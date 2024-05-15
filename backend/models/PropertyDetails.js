@@ -25,30 +25,11 @@ const PropertyDetailsSchema = mongoose.Schema(
     location: { type: String },
     friendlyAddress: { type: String },
     mapLocation: { type: String },
-    /////////////////////
-    featureImage: {
-      data: Buffer,
-      contentType: String,
-    },
-    gallery: [
-      {
-        data: Buffer,
-        contentType: String,
-      },
-    ],
-    attachments: [
-      {
-        data: Buffer,
-        contentType: String,
-      },
-    ],
+
+    featureImage: { type: String },
+    gallery: { type: String },
+    attachments: { type: String },
     videoLink: { type: String },
-    amenities: { type: Array },
-    //////////////////////////
-    // featureImage: { type: String },
-    // gallery: { type: String },
-    // attachments: { type: String },
-    // videoLink: { type: String },
     amenities: { type: Array },
   },
   { timestamps: true }
