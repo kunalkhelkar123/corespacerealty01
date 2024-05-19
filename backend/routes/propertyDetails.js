@@ -6,13 +6,15 @@ const { verifyTokenAndAdmin } = require("./verifyToken");
 const CryptoJs = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const path = require("path");
 
+// Multer configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    return cb("../uploads");
+    cb(null, "uploads/"); // Save uploaded files to the uploads folder
   },
   filename: function (req, file, cb) {
-    return cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, Date.now() + path.extname(file.originalname)); // Append timestamp to the filename to make it unique
   },
 });
 
@@ -48,16 +50,14 @@ router.post(
         location,
         friendlyAddress,
         mapLocation,
-        featureImage,
+        // featureImage,
         gallery,
         attachments,
         videoLink,
         amenities,
       } = req.body;
 
-
-      
-
+      const featureImage = req.file.filename; //// new line
       // Create a new PropertyDetails document
       const newPropertyDetails = new PropertyDetails({
         propertyTitle,
@@ -93,13 +93,23 @@ router.post(
       // Save the new PropertyDetails document to the database
       const savedPropertyDetails = await newPropertyDetails.save();
 
-      console.log("data in vbackend  ==> ", savedPropertyDetails);
       res.status(201).json(savedPropertyDetails);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   }
 );
+
+// count properties
+
+router.get("/property-count", async (req, res) => {
+  try {
+    const totalProperties = await PropertyDetails.countDocuments();
+    res.status(200).json({ totalProperties });
+  } catch (error) {
+    res.status(500).json({ error: "Fail to calculate Total user" });
+  }
+});
 
 //// get all property details
 

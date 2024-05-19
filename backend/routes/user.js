@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router()
 const OtpModel = require("../models/Otp")
-const {otpVerification} = require("../helper/otpValidation")
-require('dotenv').config();
-const twilio = require("twilio");
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
 
-const twilioClient = new twilio(accountSid,authToken);
+// const twilio = require("twilio");
+
+// const accountSid = process.env.TWILIO_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_AUTH_TOKEN;
+
+// const twilioClient = new twilio(accountSid,authToken);
 
 router.post("/send-otp", async (req,res)=>{
 try {
@@ -21,11 +21,11 @@ try {
         {upsert:true, new:true, setDefaultsOnInsert: true}
     );
 
-   await twilioClient.messages.create({
-        body:`Your OTP is:${otp}`,
-        to:phoneNumber,
-        from:process.env.TWILIO_PHONE_NUMBER
-    });
+//    await twilioClient.messages.create({
+//         body:Your OTP is:${otp},
+//         to:phoneNumber,
+//         from:process.env.TWILIO_PHONE_NUMBER
+//     });
     
    return res.status(200).json({
     success:true,
@@ -94,5 +94,3 @@ router.get("/all-user", async (req,res) => {
 
 
 module.exports = router
-
-
