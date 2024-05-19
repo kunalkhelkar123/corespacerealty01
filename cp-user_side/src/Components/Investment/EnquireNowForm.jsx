@@ -1,6 +1,5 @@
-import React from 'react';
-import office from '../Investment/office.jpg'
-
+import React from "react";
+import office from "../Investment/office.jpg";
 
 const EnquireNowForm = () => {
   return (
@@ -10,31 +9,45 @@ const EnquireNowForm = () => {
       <img src={office} alt="Image 2" className="h-60 w-85 mt-3" />
 
       <p className="text-gray-600 mb-4 mt-7">
-        Brickfolio provides you with the best real estate options. Whether you are looking for a flat, house, land, or commercial property, we've got you covered.
+        Brickfolio provides you with the best real estate options. Whether you
+        are looking for a flat, house, land, or commercial property, we've got
+        you covered.
       </p>
 
-    
-
-      {/* Form Section */}
+      {/* Form Section     */}
       <form>
         <label htmlFor="name" className="block text-gray-600 mb-2">
           Your Name:
         </label>
-        <input type="text" id="name" className="w-full h-10 border rounded-md mb-4 px-3" />
+        <input
+          type="text"
+          id="name"
+          className="w-full h-10 border rounded-md mb-4 px-3"
+        />
 
         <label htmlFor="email" className="block text-gray-600 mb-2">
           Your Email:
         </label>
-        <input type="text" id="email" className="w-full h-10 border rounded-md mb-4 px-3" />
+        <input
+          type="text"
+          id="email"
+          className="w-full h-10 border rounded-md mb-4 px-3"
+        />
 
         <label htmlFor="mobile" className="block text-gray-600 mb-2">
           Your Mobile Number:
         </label>
-        <input type="text" id="mobile" className="w-full h-10 border rounded-md mb-4 px-3" />
+        <input
+          type="text"
+          id="mobile"
+          className="w-full h-10 border rounded-md mb-4 px-3"
+        />
 
         {/* Button Section */}
         <div>
-          <button className="bg-[#FFF848] hover:bg-[#390255]  hover:border-[#390255] hover:text-white text-black h-12 w-full rounded-md mb-2">Submit</button>
+          <button className="bg-[#FFF848] hover:bg-[#390255]  hover:border-[#390255] hover:text-white text-black h-12 w-full rounded-md mb-2">
+            Submit
+          </button>
         </div>
       </form>
     </div>
