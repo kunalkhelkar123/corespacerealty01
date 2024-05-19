@@ -1,11 +1,11 @@
-1)Add the proxy for frontend and backend.
-2)Fix the issue with saving images.
-3)Add all routes for the admin panel dashboard page.
+1)Add the proxy for frontend and backend.                                                                            
+2)Fix the issue with saving images.                                                                                                                
+3)Add all routes for the admin panel dashboard page.                                                                                                        
 4)Remaining the routing for the user side.
 
 
 
-** Commands to run the project
+** Commands to run the project                                                                                                                    
 First need to Install npm. To install npm in all directory, use the command: ==> npm i || npm install 
 
 1) For cp-admin_side
