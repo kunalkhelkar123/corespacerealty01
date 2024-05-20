@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import Aminities from "./Aminities";
 
-import GoogleMapComonent from "./GoogleMapComonent";
+
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -79,7 +79,35 @@ function PropertySubmission() {
       const response = await axios.post("/api/property/propertyDetails", data);
       toast.success("Property submitted successfully");
       console.log("Property Details created:", response.data);
-      setFormData(""); // Reset form state as needed
+    //   setFormData({
+    //     propertyTitle: "",
+    // propertyType: [],
+    // propertyDescription: "",
+    // propertyID: "",
+    // parentProperty: "",
+    // status: "",
+    // label: [],
+    // material: [],
+    // rooms: 0,
+    // beds: 0,
+    // baths: 0,
+    // garages: 0,
+    // yearBuilt: 0,
+    // homeArea: "",
+    // lotDimentions: "",
+    // lotArea: "",
+    // price: "",
+    // pricePrefix: "",
+    // priceSuffix: "",
+    // priceCustom: "",
+    // location: "",
+    // featureImage: null,
+    // amenities: [],
+
+    //   }); // Reset form state as needed
+      
+    setFormData("")
+    naviagte("/myProprties")
     } catch (error) {
       console.error("Error creating Property Details:", error);
     }
@@ -150,10 +178,10 @@ function PropertySubmission() {
                 >
                   <option value="">Select Property Type</option>
                   <option value="Apartment">Apartment</option>
-                  <option value="Condo">Condo</option>
-                  <option value="Family House">Family House</option>
-                  <option value="Modern Vila">Modern Villa</option>
-                  <option value="Town House">Town House</option>
+                  <option value="Commercial">Commercial</option>
+                  <option value="Resedential">Resedential</option>
+                  <option value="Investement">Investement</option>
+                  {/* <option value="Town House">Town House</option> */}
                 </select>
                 <label className="block  mt-5 mb-5 text-lg font-medium text-gray-900 dark:text-black">
                   Property Description

@@ -122,6 +122,20 @@ router.get("/properties", async (req, res) => {
   }
 });
 
+
+
+// 
+
+
+router.get("/properties/filter/:propertyType", async (req, res) => {
+  try {
+      const { propertyType } = req.params;
+      const properties = await PropertyDetails.find({ propertyType: { $in: [propertyType] } });
+      res.status(200).json(properties);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
 //// get single property details
 router.get("/properties/:id", async (req, res) => {
   try {

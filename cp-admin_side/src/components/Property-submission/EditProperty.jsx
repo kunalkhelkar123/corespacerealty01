@@ -8,13 +8,13 @@ function EditProperty() {
 
 const [formData,setFormData]=useState({
   propertyTitle: "",
-    propertyType: [],
+    propertyType: "",
     propertyDescription: "",
     propertyID: "",
     parentProperty: "",
     status: "",
-    label: [],
-    material: [],
+    label: "",
+    material: "",
     rooms: 0,
     beds: 0,
     baths: 0,
@@ -30,10 +30,8 @@ const [formData,setFormData]=useState({
     location: "",
     friendlyAddress: "",
     mapLocation: "",
-    featureImage: "",
-    gallery: "",
-    attachments: "",
-    videoLink: "",
+    featureImage: null,
+    
     amenities: []
 });
 
@@ -70,8 +68,24 @@ const handleUpdate= async(e)=>{
   }
 };
 
-const handleChange=(e)=>{
-  setFormData({...formData,[e.target.name]:e.target.value});
+const handleChange = (e) => {
+  const { name, value, type, files } = e.target;
+  if (type === 'file') {
+    setFormData({ ...formData, [name]: files[0] });
+  } else if (type === 'checkbox') {
+    const updatedAmenities = [...formData.amenities];
+    if (e.target.checked) {
+      updatedAmenities.push(name);
+    } else {
+      const index = updatedAmenities.indexOf(name);
+      if (index > -1) {
+        updatedAmenities.splice(index, 1);
+      }
+    }
+    setFormData({ ...formData, amenities: updatedAmenities });
+  } else {
+    setFormData({ ...formData, [name]: value });
+  }
 };
 
 
@@ -103,6 +117,22 @@ const handleChange=(e)=>{
         { name: 'Window Coverings' },
       
       ];
+    // const amenities = [
+    //   'Air Conditioning',
+    //   'Barbeque',
+    //   'Gym',
+    //   'Laundry',
+    //   'Lawn',
+    //   'Microwave',
+    //   'Outdoor Shower',
+    //   'Refrigerator',
+    //   'Sauna',
+    //   'Swimming Pool',
+    //   'TV Cable',
+    //   'Washer',
+    //   'WiFi',
+    //   'Window Coverings'
+    // ];
   return (
     <div className="flex justify-center items-center bg-slate-50">
             <ToastContainer/>
@@ -502,26 +532,15 @@ const handleChange=(e)=>{
               <h1 className="text-xl font-bold text-gray-900 mb-8">Media</h1>
               <div className='p-5'>
       <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-black" htmlFor="small_size">Featured Image</label>
-      <input className="b h-[50px] " id="small_size" type="file" name='featureImage' value={formData.featureImage} onChange={handleChange}
+      <input className="b h-[50px] " id="small_size" type="file" name='featureImage'
+      //  value={formData.featureImage}
+        onChange={handleChange}
        />
 
-      <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-black" htmlFor="default_size">Gallery</label>
-      <input className=" h-[50px]" id="default_size" type="file" name='gallary' value={formData.gallery} onChange={handleChange}
-      />
 
-      <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-black" htmlFor="large_size">Attachments</label>
-      <input className=" " id="large_size" type="file"  accept=".pdf" name="attachments" value={formData.attachments} onChange={handleChange}/>
+
        
-      <label className="block mb-2 text-lg font-medium mt-5 text-gray-900 dark:text-black" htmlFor="large_size">Video Link</label>
-      <input
-        className="placeholder:italic    bg-white w-full border border-black rounded-md py-2 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500  sm:text-sm"
-        placeholder=""
-        type="text"
-        name="videoLink"
-        value={formData.videoLink}
-        onChange={handleChange}
-        
-      />
+     
       <p className='text-xs text-gray-500 p-2'>Enter Youtube or Vimeo url.</p>
 
       
